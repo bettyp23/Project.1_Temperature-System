@@ -18,14 +18,6 @@ The `Temperature` class represents a temperature in terms of degrees (with decim
 1. **Constructors**
    - Initialize a `Temperature` object with specified degrees and scale.
    - Invalid temperatures (e.g., below 0 Kelvin or invalid scales) will default to 0°C.
-   - Examples:
-     ```cpp
-     Temperature t1;           // 0°C by default
-     Temperature t2(23.5, 'F'); // 23.5°F
-     Temperature t3(12.6, 'Z'); // Invalid scale, defaults to 0°C
-     Temperature t4(-300, 'C'); // Below 0 Kelvin, defaults to 0°C
-     Temperature t5(15, 'K');   // 15 Kelvin
-     ```
 
 2. **Input Function**: `void Input()`
    - Prompts the user for temperature input in the format `degrees scale`.
@@ -59,3 +51,4 @@ The `Temperature` class represents a temperature in terms of degrees (with decim
      - Returns `-1` if the calling object is lower.
      - Returns `0` if the objects represent the same temperature.
      - Returns `1` if the parameter object is lower.
+

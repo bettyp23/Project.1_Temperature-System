@@ -19,7 +19,7 @@ Temperature::Temperature() {
 
 // Parameterized constructor - initializes temperature with provided degree and scale
 Temperature::Temperature(double deg, char s) {
-   // assign the scale based on user input
+// assign the scale based on user input
     if (s == 'C' || s == 'c' ){
         scale = 'C';
     }
@@ -30,9 +30,9 @@ Temperature::Temperature(double deg, char s) {
         scale = 'K';
     }
     else 
-        scale = 'C';                // Default to Celsius if invalid scale is provided
+        scale = 'C';                                    // Default to Celsius if invalid scale is provided
     
-    //// Assign degrees based on the scale with validation for absolute zero values
+    // Assign degrees based on the scale with validation for absolute zero values
     if (scale == 'C'){
        (deg > -273.15) ? degrees = deg  : degrees = 0;
     }
@@ -55,7 +55,7 @@ void Temperature::Input(){
 
     cout<<"Enter a temperature: "<<'\n';
 
-     if (s == 'C' || s == 'c' ){
+    if (s == 'C' || s == 'c' ){
         cin>>scale;
     }
     else if (s == 'F' || s == 'f'){
@@ -84,25 +84,26 @@ void Temperature::Input(){
         }
     }
     else
-        degrees = 0;            // Default to 0 if no valid input
+        degrees = 0;           // Default to 0 if no valid input
 
-    format = Default;           // Set the format to default
+    format = Default;          // Set the format to default
 }
 
 // Output function to display the temperature in the selected format
 void Temperature::Show() const{
     switch (format) 
     {
-    case Default:
+    case Default:{
         cout<<degrees<<" "<<scale<<endl;
         break;
-
+    }
     case Precision1:{
         cout<<fixed<<setprecision(1)<<degrees<<" "<<scale<<endl;
         break;
     }
-    case Long:
+    case Long:{
         cout<<"Long: "<<degrees<<" ";
+    }
 
  // Display full name of the temperature scale
         if (scale == 'C'){
@@ -129,7 +130,7 @@ char Temperature::GetScale() const{
 }    
 
  bool Temperature::Set(double deg, char s){   
-    //check if scale is valid and check it
+ //check if scale is valid and check it
     if (s == 'C' || s == 'c' ) {
         scale = 'C';
     }
@@ -143,8 +144,7 @@ char Temperature::GetScale() const{
         return false;
     }
     
-    //assign the degree based on valid scale
-    //assign degree to value: else return false and the current value does not change
+    //assign the degree based on valid scale: else return false and the current value does not change
     if (scale == 'C'){
        if (deg > -273.15){
             degrees = deg;
@@ -170,23 +170,23 @@ char Temperature::GetScale() const{
         }
     }
 
-    return true;                     // Successfully set the temperature
+    return true;                          // Successfully set the temperature
  }
 
 // Set the format of the temperature display
 bool Temperature::SetFormat(char f){
     switch (f) {
         case 'D':
-            format = Default;      // Default format
+            format = Default;             // Default format
             return true;
         case 'P':
-            format = Precision1;    // Set to 1 decimal precision
+            format = Precision1;          // Set to 1 decimal precision
             return true;
         case 'L':
-            format = Long;      // Set to long format
+            format = Long;                // Set to long format
             return true;
         default:
-            return false;      // Invalid format
+            return false;                 // Invalid format
 
     }
 }

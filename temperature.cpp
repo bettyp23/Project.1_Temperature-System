@@ -53,7 +53,10 @@ void Temperature::Input(){
     double deg;
     char s;
 
+    bool valid = false;     //flag to check if input is false
     cout<<"Enter a temperature: "<<'\n';
+
+    while (!valid){
     cin>>deg>>s;
 
     if (s == 'C' || s == 'c' ){
@@ -65,35 +68,37 @@ void Temperature::Input(){
     else if (s == 'K' || s == 'k'){
         scale = 'K';
     }
-    else 
-        scale = 'C';
+    else {
+        cout<<"Invalid scale. Try again.\n";
+        continue;           //Skip the rest of the loop and ask for input again
+    }
     
-    //// Assign degrees based on the scale with validation for minimum values
+    // Assign degrees based on the scale with validation for minimum values
     if (scale == 'C'){
-       if (deg > -273.15){
+       if (deg >= -273.15){
             degrees = deg;
+            valid = true;   //break the loop
        } else{
-            degrees = 0;
+            cout<<"Invalid temperature. Try again\n";
        }
     }
     else if (scale == 'F'){
-        if (deg > -459.67){
+        if (deg >= -459.67){
             degrees = deg;
+            valid = true;
         }else{
-            degrees = 0;
+            cout<<"Invalid temperature. Try again\n";
         }
     }
     else if (scale  == 'K'){
-        if (deg > 0){
+        if (deg >= 0){
             degrees = deg;
+            valid = true;
         } else{
-            degrees = 0;
+            cout<<"Invalid temperature. Try again\n";
         }
     }
-    else
-        degrees = 0;           // Default to 0 if no valid input
-
-    format = Default;          // Set the format to default
+    }
 }
 
 // Output function to display the temperature in the selected format

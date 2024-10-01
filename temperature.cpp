@@ -54,15 +54,16 @@ void Temperature::Input(){
     char s;
 
     cout<<"Enter a temperature: "<<'\n';
+    cin>>deg>>s;
 
     if (s == 'C' || s == 'c' ){
-        cin>>scale;
+        scale = 'C';
     }
     else if (s == 'F' || s == 'f'){
-         cin>>scale;
+         scale = 'F';
     }
     else if (s == 'K' || s == 'k'){
-        cin>>scale;
+        scale = 'K';
     }
     else 
         scale = 'C';
@@ -70,17 +71,23 @@ void Temperature::Input(){
     //// Assign degrees based on the scale with validation for minimum values
     if (scale == 'C'){
        if (deg > -273.15){
-            cin>>deg;
+            degrees = deg;
+       } else{
+            degrees = 0;
        }
     }
     else if (scale == 'F'){
         if (deg > -459.67){
-            cin>>deg;
+            degrees = deg;
+        }else{
+            degrees = 0;
         }
     }
     else if (scale  == 'K'){
         if (deg > 0){
-            cin>>deg;
+            degrees = deg;
+        } else{
+            degrees = 0;
         }
     }
     else
@@ -99,10 +106,12 @@ void Temperature::Show() const{
     }
     case Precision1:{
         cout<<fixed<<setprecision(1)<<degrees<<" "<<scale<<endl;
+        cout.unsetf(ios::fixed); //unset the fixed format
+        cout.precision(6);      //resent to default
         break;
     }
     case Long:{
-        cout<<"Long: "<<degrees<<" ";
+        cout<<degrees<<" ";
     }
 
  // Display full name of the temperature scale

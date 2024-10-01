@@ -2,7 +2,7 @@
 //-----------Temperature.h-------------
 
 enum Format {
-    Default,
+    Default,                                            //Default
     Precision1,
     Long
 };
